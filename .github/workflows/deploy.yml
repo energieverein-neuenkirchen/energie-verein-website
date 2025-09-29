@@ -1,38 +1,27 @@
 name: Deploy Website (rsync)
-
 on:
   push:
     branches: [ "main" ]
-
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      # Falls du Node (z. B. Vite/Astro/Next) nutzt
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
       - name: Install & Build
         run: |
           if [ -f package.json ]; then
             npm ci || npm install
             npm run build || echo "Kein Build-Script gefunden"
           else
-            mkdir -p dist
-            cp -r * dist/ || true
+            mkdir -p dist && cp -r * dist/ || true
           fi
-
-      - name: Rsync to server
-        uses: burnett01/rsync-deployments@7.0.1
+      - name: Load SSH key
+        uses: webfactory/ssh-agent@v0.9.0
         with:
-          switches: -avz --delete
-          path: dist/
-          remote_path: /opt/site/
-          remote_host: 94.130.79.103
-          remote_user: deploy
-          remote_key: ${{ secrets.SSH_PRIVATE_KEY }}
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+      - name: Rsync deploy
+        run: |
+          rsync -avz --delete -e "ssh -o StrictHostKeyChecking=no" \
+            dist/ deploy@94.130.79.103:/opt/site/
