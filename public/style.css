@@ -1,3 +1,10 @@
+header {
+  background: url('header-bg.jpg') no-repeat center center;
+  background-size: cover;
+  color: white;
+  text-align: center;
+  padding: 120px 20px;
+}
 .big-button {
   display: inline-block;
   font-size: 18px;
