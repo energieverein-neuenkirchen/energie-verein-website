@@ -1,100 +1,16 @@
 <!doctype html>
 <html lang="de">
 <head>
-  <link rel="stylesheet" href="style.css">
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Energie-Verein Neuenkirchen (n.e.V.)</title>
   <meta name="description" content="Gemeinsam die Energiewende lokal gestalten – fair, transparent und für alle.">
-  <style>
-    :root{
-      --bg:#f6f8fb;
-      --surface:#ffffff;
-      --text:#1b2a3a;
-      --muted:#5b6b7c;
-      --brand:#0a5ca8;
-      --brand-600:#084a86;
-      --ok:#1aa36f;
-      --radius:16px;
-      --shadow:0 10px 30px rgba(15, 23, 42, .08);
-    }
-    *{box-sizing:border-box}
-    html,body{margin:0;background:var(--bg);color:var(--text);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
-    a{color:var(--brand);text-decoration:none}
-    a:hover{text-decoration:underline}
-
-    /* HERO */
-    .hero{
-      position:relative;
-      overflow:hidden;
-      color:#fff;
-      background:linear-gradient(to bottom,rgba(8,74,134,.85),rgba(8,74,134,.85)), 
-                 url('https://images.unsplash.com/photo-1509395176047-4a66953fd231?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;
-    }
-    .wrap{max-width:1100px;margin:0 auto;padding:0 20px}
-    .hero .wrap{padding:80px 20px}
-    .hero h1{margin:0 0 8px;font-weight:800;letter-spacing:.5px;font-size:clamp(28px,5vw,52px)}
-    .hero p{margin:0 0 28px;color:#e6eef6;font-size:clamp(16px,2.4vw,20px)}
-    .cta{display:flex;gap:12px;flex-wrap:wrap}
-    .btn{
-      display:inline-flex;align-items:center;gap:.5rem;
-      padding:12px 18px;border-radius:12px;border:1px solid rgba(255,255,255,.25);
-      color:#fff;background:rgba(255,255,255,.08);backdrop-filter: blur(4px);
-      font-weight:600;text-decoration:none;
-      transition:.15s ease-in-out; box-shadow:0 4px 16px rgba(0,0,0,.1);
-    }
-    .btn:hover{transform:translateY(-1px);background:rgba(255,255,255,.18)}
-    .btn--solid{background:#fff;color:var(--brand);border-color:#fff}
-    .btn--solid:hover{background:#f2f6ff}
-
-    /* SECTIONS */
-    section{padding:48px 0}
-    .card{background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow)}
-    .grid{display:grid;gap:22px}
-    .grid.cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
-    .grid.cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}
-    @media (max-width:720px){
-      .grid.cols-3,.grid.cols-2{grid-template-columns:1fr}
-      .hero .wrap{padding:64px 20px}
-    }
-
-    h2{margin:0 0 18px;font-size:28px}
-    .muted{color:var(--muted)}
-
-    /* Team */
-    .team{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
-    @media (max-width:720px){.team{grid-template-columns:1fr}}
-    .person{display:flex;gap:14px;padding:16px;border-radius:14px;background:#f3f6fb}
-    .avatar{
-      width:54px;height:54px;border-radius:50%;
-      background:linear-gradient(135deg,#dfe9f7,#bcd4f2);
-      display:grid;place-items:center;color:#2c4d77;font-weight:700
-    }
-    .role{font-size:13px;color:var(--muted);margin-top:2px}
-
-    /* Termine + Mitglied werden */
-    .two{display:grid;grid-template-columns:1.2fr .8fr;gap:22px}
-    @media (max-width:900px){.two{grid-template-columns:1fr}}
-    .date{
-      width:64px;height:64px;border-radius:12px;background:#e8effa;color:var(--brand);
-      display:grid;place-items:center;font-weight:800
-    }
-    .list{padding:0;margin:0;list-style:none}
-    .list li{margin:10px 0}
-    .cta--green{background:var(--ok);border-color:var(--ok);color:#fff}
-    .cta--green:hover{filter:brightness(1.05)}
-
-    /* Footer */
-    footer{padding:26px 0 44px;color:var(--muted)}
-    .contact{display:grid;gap:10px}
-    .contact strong{color:var(--text)}
-    .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;}
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <!-- HERO -->
- <header class="hero">
+  <header class="hero" id="top">
     <div class="wrap">
       <h1>Energie fürs Dorf ⚡</h1>
       <p>Gemeinsam die Energiewende lokal gestalten – fair, transparent und nachhaltig.</p>
@@ -109,19 +25,21 @@
   <main class="wrap">
 
     <!-- Über uns -->
-    <section id="ueber-uns">
+    <section id="ueber-uns" aria-labelledby="ueber-uns-title">
       <div class="grid cols-2">
-        <div class="card" style="padding:22px">
-          <h2>Über uns</h2>
-          <p class="muted">Wir sind Bürgerinnen und Bürger aus Neuenkirchen, die gemeinsam die lokale Energiewende gestalten wollen – transparent, fair und nachhaltig.</p>
-          <ul class="list">
-           <p>
+        <div class="card">
+          <h2 id="ueber-uns-title">Über uns</h2>
+          <p class="muted">
+            Wir sind Bürgerinnen und Bürger aus Neuenkirchen, die gemeinsam die lokale Energiewende
+            gestalten wollen – transparent, fair und nachhaltig.
+          </p>
+          <p>
             <a href="satzung.pdf" target="_blank" rel="noopener">📄 Satzung</a><br>
-            <a href="Gründungsprotokoll.pdf" target="_blank" rel="noopener">📄 Gründungsprotokoll</a>
-            </p>
-          </ul>
+            <a href="gruendungsprotokoll.pdf" target="_blank" rel="noopener">📄 Gründungsprotokoll</a>
+          </p>
         </div>
-        <div class="card" style="padding:22px">
+
+        <div class="card">
           <h2>Vorstand</h2>
           <div class="team">
             <div class="person">
@@ -150,97 +68,99 @@
       </div>
     </section>
 
-    <!-- Schritte -->
-    <section id="projekte">
-      <h2>Unsere nächsten Schritte</h2>
-      <div class="card" style="padding:22px">
+    <!-- Schritte / Projekte -->
+    <section id="projekte" aria-labelledby="projekte-title">
+      <h2 id="projekte-title">Unsere nächsten Schritte</h2>
+      <div class="card">
         <ol style="padding-left:20px; line-height:1.6">
           <li>
             <strong>Verein gründen (e.V.)</strong><br>
-            Zuerst gründen wir einen Verein, um Mitglieder zu sammeln, Ideen zu bündeln und Projekte im Dorf gemeinsam auszuarbeiten.
+            Zuerst gründen wir einen Verein, um Mitglieder zu sammeln, Ideen zu bündeln und
+            Projekte im Dorf gemeinsam auszuarbeiten.
           </li>
           <li>
             <strong>Genossenschaft (eG) aufbauen</strong><br>
-            Wenn ein Projekt konkret und finanziell machbar ist (z. B. PV-Anlage, Speicher, Windrad), wandeln wir das Ganze in eine Genossenschaft um.
+            Wenn ein Projekt konkret und finanziell machbar ist (z. B. PV-Anlage, Speicher, Windrad),
+            wandeln wir das Ganze in eine Genossenschaft um.
           </li>
           <li>
             <strong>Faire Beteiligung</strong><br>
-            Dort bringt jeder nach Wunsch eigene Anteile ein – Gewinne aus den Projekten werden fair nach den Einlagen verteilt.
+            Dort bringt jede*r nach Wunsch eigene Anteile ein – Gewinne aus den Projekten
+            werden fair nach den Einlagen verteilt.
           </li>
         </ol>
       </div>
     </section>
 
-  <!-- Termine & Mitglied werden -->
-<section id="termine">
-  <div class="two">
-    <div class="card" style="padding:22px">
-      <h2>Termine</h2>
-      <div style="display:flex;gap:16px;align-items:center">
-        <div class="date">
-          <div>
-            <div style="font-size:12px">MAI</div>
-            <div style="font-size:22px">15</div>
+    <!-- Termine & Mitglied werden -->
+    <section id="termine" aria-labelledby="termine-title">
+      <div class="two">
+        <div class="card">
+          <h2 id="termine-title">Termine</h2>
+          <div style="display:flex;gap:16px;align-items:center">
+            <div class="date">
+              <div>
+                <div style="font-size:12px">MAI</div>
+                <div style="font-size:22px">15</div>
+              </div>
+            </div>
+            <div>
+              <strong>Mitgliederversammlung</strong><br>
+              <a href="#">Zur Tagesordnung</a>
+            </div>
           </div>
         </div>
-        <div>
-          <strong>Mitgliederversammlung</strong><br>
-          <a href="#">Zur Tagesordnung</a>
+
+        <div id="mitglied" class="card">
+          <h2>Mitglied werden</h2>
+          <ul class="list">
+            <li>Mitsprache bei allen Projekten</li>
+            <li>Informationen &amp; Beratung zu Fördermitteln und Technik</li>
+            <li>Mehr Wertschöpfung in der Gemeinde</li>
+          </ul>
+          <p style="text-align:center; margin-top:20px;">
+            <a class="btn cta--green big-button" href="mitgliedsantrag_evn.pdf" target="_blank" rel="noopener">
+              MITGLIEDSANTRAG (PDF)
+            </a>
+          </p>
         </div>
       </div>
-    </div>
-
-   <div id="mitglied" class="card" style="padding:22px">
-  <h2>Mitglied werden</h2>
-  <ul class="list">
-    <li>Mitsprache bei allen Projekten</li>
-    <li>Informationen & Beratung zu Fördermitteln und Technik</li>
-    <li>Mehr Wertschöpfung in der Gemeinde</li>
-  </ul>
-  <p style="text-align:center; margin-top:20px;">
-    <a class="btn cta--green big-button" href="mitgliedsantrag_evn.pdf" target="_blank" rel="noopener">
-      MITGLIEDSANTRAG (PDF)
-    </a>
-  </p>
-</div>
-</section>
-
+    </section>
 
     <!-- Kontakt -->
-<section id="kontakt" class="card" style="padding:22px">
-  <h2>Kontakt</h2>
-  <div class="grid cols-3 contact">
-    <div>
-      <strong>Steffen Kellermann</strong><br>
-      <span class="mono">0172 6824076</span><br>
-      <a href="mailto:info@energie-verein-neuenkirchen.de">info@energie-verein-neuenkirchen.de</a>
-    </div>
-    <div>
-      <strong>Nils Landwehr</strong><br>
-      <span class="mono">0174 3928563</span><br>
-      <a href="mailto:info@energie-verein-neuenkirchen.de">info@energie-verein-neuenkirchen.de</a>
-    </div>
-    <div>
-      <strong>Christian Buschmann</strong><br>
-      <span class="mono">0174 9946761</span><br>
-      <a href="mailto:info@energie-verein-neuenkirchen.de">info@energie-verein-neuenkirchen.de</a>
-    </div>
-  </div>
-</section>
-
+    <section id="kontakt" class="card" aria-labelledby="kontakt-title">
+      <h2 id="kontakt-title">Kontakt</h2>
+      <div class="grid cols-3 contact">
+        <div>
+          <strong>Steffen Kellermann</strong><br>
+          <a class="mono" href="tel:01726824076">0172 6824076</a><br>
+          <a href="mailto:info@energie-verein-neuenkirchen.de">info@energie-verein-neuenkirchen.de</a>
+        </div>
+        <div>
+          <strong>Nils Landwehr</strong><br>
+          <a class="mono" href="tel:01743928563">0174 3928563</a><br>
+          <a href="mailto:info@energie-verein-neuenkirchen.de">info@energie-verein-neuenkirchen.de</a>
+        </div>
+        <div>
+          <strong>Christian Buschmann</strong><br>
+          <a class="mono" href="tel:01749946761">0174 9946761</a><br>
+          <a href="mailto:info@energie-verein-neuenkirchen.de">info@energie-verein-neuenkirchen.de</a>
+        </div>
+      </div>
+    </section>
 
   </main>
 
-<footer>
+  <footer>
     <div class="wrap">
-      © <span id="year"></span> Energie-Verein Neuenkirchen (n.e.V.) · 
-      <a href="impressum.html">Impressum</a> · 
+      © <span id="year"></span> Energie-Verein Neuenkirchen (n.e.V.) ·
+      <a href="impressum.html">Impressum</a> ·
       <a href="datenschutz.html">Datenschutz</a>
     </div>
   </footer>
 
   <script>
-    document.getElementById('year').textContent=new Date().getFullYear();
+    document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
