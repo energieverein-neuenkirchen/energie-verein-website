@@ -52,8 +52,6 @@
     .grid{display:grid;gap:22px}
     .grid.cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
     .grid.cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}
-    .grid.cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}
-    @media (max-width:900px){.grid.cols-4{grid-template-columns:repeat(2,minmax(0,1fr))}}
     @media (max-width:720px){
       .grid.cols-3,.grid.cols-2{grid-template-columns:1fr}
       .hero .wrap{padding:64px 20px}
@@ -72,12 +70,6 @@
       display:grid;place-items:center;color:#2c4d77;font-weight:700
     }
     .role{font-size:13px;color:var(--muted);margin-top:2px}
-
-    /* Projekte-Kacheln */
-    .tile{padding:18px;border-radius:14px;background:var(--brand);color:#fff;display:flex;gap:12px;align-items:center}
-    .tile svg{width:28px;height:28px;opacity:.95}
-    .tile h3{margin:0;font-size:18px}
-    .tile--alt{background:var(--brand-600)}
 
     /* Termine + Mitglied werden */
     .two{display:grid;grid-template-columns:1.2fr .8fr;gap:22px}
@@ -107,7 +99,7 @@
       <p>Gemeinsam die Energiewende lokal gestalten – fair, transparent und für alle.</p>
       <div class="cta">
         <a class="btn btn--solid" href="#mitglied">Mitmachen</a>
-        <a class="btn" href="#projekte">Projekte</a>
+        <a class="btn" href="#projekte">Schritte</a>
         <a class="btn" href="#termine">Termine</a>
       </div>
     </div>
@@ -155,27 +147,26 @@
       </div>
     </section>
 
-   <!-- Projekte / Schritte -->
-<section id="projekte">
-  <h2>Unsere nächsten Schritte</h2>
-  <div class="card" style="padding:22px">
-    <ol style="padding-left:20px; line-height:1.6">
-      <li>
-        <strong>Verein gründen (e.V.)</strong><br>
-        Zuerst gründen wir einen Verein, um Mitglieder zu sammeln, Ideen zu bündeln und Projekte im Dorf gemeinsam auszuarbeiten.
-      </li>
-      <li>
-        <strong>Genossenschaft (eG) aufbauen</strong><br>
-        Wenn ein Projekt konkret und finanziell machbar ist (z. B. PV-Anlage, Speicher, Windrad), wandeln wir das Ganze in eine Genossenschaft um.
-      </li>
-      <li>
-        <strong>Faire Beteiligung</strong><br>
-        Dort bringt jeder nach Wunsch eigene Anteile ein – Gewinne aus den Projekten werden fair nach den Einlagen verteilt.
-      </li>
-    </ol>
-  </div>
-</section>
-
+    <!-- Schritte -->
+    <section id="projekte">
+      <h2>Unsere nächsten Schritte</h2>
+      <div class="card" style="padding:22px">
+        <ol style="padding-left:20px; line-height:1.6">
+          <li>
+            <strong>Verein gründen (e.V.)</strong><br>
+            Zuerst gründen wir einen Verein, um Mitglieder zu sammeln, Ideen zu bündeln und Projekte im Dorf gemeinsam auszuarbeiten.
+          </li>
+          <li>
+            <strong>Genossenschaft (eG) aufbauen</strong><br>
+            Wenn ein Projekt konkret und finanziell machbar ist (z. B. PV-Anlage, Speicher, Windrad), wandeln wir das Ganze in eine Genossenschaft um.
+          </li>
+          <li>
+            <strong>Faire Beteiligung</strong><br>
+            Dort bringt jeder nach Wunsch eigene Anteile ein – Gewinne aus den Projekten werden fair nach den Einlagen verteilt.
+          </li>
+        </ol>
+      </div>
+    </section>
 
     <!-- Termine & Mitglied werden -->
     <section id="termine">
