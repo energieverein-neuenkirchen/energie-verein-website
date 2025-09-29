@@ -1,13 +1,97 @@
+/* =========================
+   Basis-Styling
+========================= */
+:root {
+  --bg: #f6f8fb;
+  --surface: #ffffff;
+  --text: #1b2a3a;
+  --muted: #5b6b7c;
+  --brand: #0a5ca8;
+  --brand-600: #084a86;
+  --ok: #28a745;
+  --radius: 16px;
+  --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 16px/1.55 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+a {
+  color: var(--brand);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/* =========================
+   Header / Hero
+========================= */
 header {
-  background: url('header-bg.jpg') no-repeat center center;
+  background: linear-gradient(to bottom, rgba(8, 74, 134, 0.85), rgba(8, 74, 134, 0.85)),
+              url('header-bg.jpg') no-repeat center center;
   background-size: cover;
   color: white;
   text-align: center;
   padding: 120px 20px;
-  min-height: 60vh; /* sorgt dafür, dass der Bereich sichtbar wird */
+  min-height: 60vh;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+header h1 {
+  margin: 0 0 8px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  font-size: clamp(28px, 5vw, 52px);
+}
+
+header p {
+  margin: 0 0 28px;
+  color: #e6eef6;
+  font-size: clamp(16px, 2.4vw, 20px);
+}
+
+/* =========================
+   Buttons
+========================= */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 12px 18px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(4px);
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.15s ease-in-out;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.btn--solid {
+  background: #fff;
+  color: var(--brand);
+  border-color: #fff;
+}
+.btn--solid:hover {
+  background: #f2f6ff;
 }
 
 .big-button {
@@ -18,12 +102,135 @@ header {
   border-radius: 8px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  background: #28a745; /* grünes Standard-Design */
+  background: var(--ok);
   color: white;
   text-decoration: none;
   transition: background 0.3s ease;
 }
-
 .big-button:hover {
-  background: #1b7d3f; /* dunkleres Grün beim Hover */
+  background: #1b7d3f;
+}
+
+/* =========================
+   Karten & Layout
+========================= */
+.wrap {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+section {
+  padding: 48px 0;
+}
+
+.card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 22px;
+}
+
+.grid {
+  display: grid;
+  gap: 22px;
+}
+.grid.cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.grid.cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+@media (max-width: 720px) {
+  .grid.cols-3, .grid.cols-2 {
+    grid-template-columns: 1fr;
+  }
+  header {
+    padding: 80px 20px;
+  }
+}
+
+h2 {
+  margin: 0 0 18px;
+  font-size: 28px;
+}
+.muted {
+  color: var(--muted);
+}
+
+/* =========================
+   Team
+========================= */
+.team {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+@media (max-width: 720px) {
+  .team {
+    grid-template-columns: 1fr;
+  }
+}
+
+.person {
+  display: flex;
+  gap: 14px;
+  padding: 16px;
+  border-radius: 14px;
+  background: #f3f6fb;
+}
+.avatar {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #dfe9f7, #bcd4f2);
+  display: grid;
+  place-items: center;
+  color: #2c4d77;
+  font-weight: 700;
+}
+.role {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+/* =========================
+   Termine & Mitglied werden
+========================= */
+.two {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 22px;
+}
+@media (max-width: 900px) {
+  .two {
+    grid-template-columns: 1fr;
+  }
+}
+
+.date {
+  width: 64px;
+  height: 64px;
+  border-radius: 12px;
+  background: #e8effa;
+  color: var(--brand);
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+}
+
+/* =========================
+   Footer
+========================= */
+footer {
+  padding: 26px 0 44px;
+  color: var(--muted);
+  text-align: center;
+}
+footer a {
+  color: var(--muted);
+}
+footer a:hover {
+  color: var(--brand);
 }
