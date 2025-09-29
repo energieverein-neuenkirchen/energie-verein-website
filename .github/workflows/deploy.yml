@@ -43,3 +43,4 @@ jobs:
           rsync -avz --delete \
             -e "ssh -o StrictHostKeyChecking=no" \
             dist/ deploy@94.130.79.103:/opt/site/
+
