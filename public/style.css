@@ -4,7 +4,12 @@ header {
   color: white;
   text-align: center;
   padding: 120px 20px;
+  min-height: 60vh; /* sorgt dafür, dass der Bereich sichtbar wird */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
 .big-button {
   display: inline-block;
   font-size: 18px;
