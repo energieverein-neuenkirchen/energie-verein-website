@@ -1,45 +1,38 @@
-name: Deploy to Server
+name: Deploy Website (rsync)
 
 on:
   push:
     branches: [ "main" ]
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Enable maintenance on server
-        uses: appleboy/ssh-action@v1.0.3
+      # Falls du Node (z. B. Vite/Astro/Next) nutzt
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_KEY }}
-          port: ${{ secrets.SSH_PORT || 22 }}
-          script: |
-            touch /opt/evn-web/site/MAINTENANCE
-            docker exec evn_web nginx -s reload || true
+          node-version: 20
 
-      - name: Upload site files
-        uses: appleboy/scp-action@v0.1.7
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_KEY }}
-          port: ${{ secrets.SSH_PORT || 22 }}
-          source: "public/*"
-          target: "/opt/evn-web/site/"
-          strip_components: 1
+      - name: Install & Build
+        run: |
+          if [ -f package.json ]; then
+            npm ci || npm install
+            npm run build || echo "Kein Build-Script gefunden"
+          else
+            mkdir -p dist
+            cp -r * dist/ || true
+          fi
 
-      - name: Disable maintenance and reload
-        uses: appleboy/ssh-action@v1.0.3
+      - name: Rsync to server
+        uses: burnett01/rsync-deployments@7.0.1
         with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_KEY }}
-          port: ${{ secrets.SSH_PORT || 22 }}
-          script: |
-            rm -f /opt/evn-web/site/MAINTENANCE
-            docker exec evn_web nginx -s reload
+          switches: -avz --delete
+          path: dist/
+          remote_path: /opt/site/
+          remote_host: 94.130.79.103
+          remote_user: deploy
+          remote_key: ${{ secrets.SSH_PRIVATE_KEY }}
