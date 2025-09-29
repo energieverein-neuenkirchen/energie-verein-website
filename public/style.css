@@ -1,0 +1,17 @@
+.big-button {
+  display: inline-block;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 14px 28px;
+  border-radius: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background: #28a745; /* grünes Standard-Design */
+  color: white;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.big-button:hover {
+  background: #1b7d3f; /* dunkleres Grün beim Hover */
+}
