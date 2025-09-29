@@ -1,5 +1,52 @@
-<!doctype html><meta charset="utf-8">
-<title>Wartung – Energie-Verein</title>
-<h1>Wir stellen gerade um</h1>
-<p>Unsere E-Mail und Website werden gerade auf ein neues System migriert.<br>
-Bitte haben Sie etwas Geduld – wir sind bald wieder online!</p>
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Wartungsarbeiten – Energie-Verein Neuenkirchen</title>
+  <style>
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background:#f6f8fb;
+      color:#1b2a3a;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height:100vh;
+      text-align:center;
+      padding:20px;
+    }
+    .box{
+      max-width:500px;
+      background:#fff;
+      padding:40px 28px;
+      border-radius:16px;
+      box-shadow:0 10px 30px rgba(15,23,42,.08);
+    }
+    h1{
+      font-size:28px;
+      margin-bottom:12px;
+      color:#0a5ca8;
+    }
+    p{margin:0 0 12px;color:#5b6b7c}
+    .logo{
+      font-size:42px;
+      margin-bottom:18px;
+    }
+    footer{margin-top:22px;font-size:14px;color:#5b6b7c}
+  </style>
+</head>
+<body>
+  <div class="box">
+    <div class="logo">⚡</div>
+    <h1>Wartungsarbeiten</h1>
+    <p>Unsere Website des <strong>Energie-Verein Neuenkirchen</strong> wird gerade überarbeitet.</p>
+    <p>Bitte haben Sie etwas Geduld – wir sind bald wieder online.</p>
+    <footer>© <span id="year"></span> Energie-Verein Neuenkirchen</footer>
+  </div>
+  <script>
+    document.getElementById('year').textContent=new Date().getFullYear();
+  </script>
+</body>
+</html>
