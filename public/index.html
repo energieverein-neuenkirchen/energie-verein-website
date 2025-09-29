@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Energie fürs Dorf – Energie-Verein Neuenkirchen</title>
+  <title>Energie-Verein Neuenkirchen (n.e.V.)</title>
   <meta name="description" content="Gemeinsam die Energiewende lokal gestalten – fair, transparent und für alle.">
   <style>
     :root{
@@ -63,9 +63,8 @@
     .muted{color:var(--muted)}
 
     /* Team */
-    .team{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
-    @media (max-width:900px){.team{grid-template-columns:repeat(2,minmax(0,1fr))}}
-    @media (max-width:560px){.team{grid-template-columns:1fr}}
+    .team{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+    @media (max-width:720px){.team{grid-template-columns:1fr}}
     .person{display:flex;gap:14px;padding:16px;border-radius:14px;background:#f3f6fb}
     .avatar{
       width:54px;height:54px;border-radius:50%;
@@ -104,7 +103,7 @@
   <!-- HERO -->
   <header class="hero">
     <div class="wrap">
-      <h1>ENERGIE FÜRS DORF</h1>
+      <h1>Energie-Verein Neuenkirchen (n.e.V.)</h1>
       <p>Gemeinsam die Energiewende lokal gestalten – fair, transparent und für alle.</p>
       <div class="cta">
         <a class="btn btn--solid" href="#mitglied">Mitmachen</a>
@@ -121,7 +120,7 @@
       <div class="grid cols-2">
         <div class="card" style="padding:22px">
           <h2>Über uns</h2>
-          <p class="muted">Wir gründen eine lokale Energie-Initiative, um Bürgerinnen und Bürger zu beteiligen – gemeinnützig, transparent und mit echtem Nutzen vor Ort.</p>
+          <p class="muted">Wir sind Bürgerinnen und Bürger aus Neuenkirchen, die gemeinsam die lokale Energiewende gestalten wollen – transparent, fair und nachhaltig.</p>
           <ul class="list">
             <li><a href="#">Satzung</a></li>
             <li><a href="#">Protokolle</a></li>
@@ -131,31 +130,24 @@
           <h2>Vorstand</h2>
           <div class="team">
             <div class="person">
-              <div class="avatar">MM</div>
+              <div class="avatar">SK</div>
               <div>
-                <strong>Max Mustermann</strong>
-                <div class="role">Vorsitzender</div>
+                <strong>Steffen Kellermann</strong>
+                <div class="role">Vorstand</div>
               </div>
             </div>
             <div class="person">
-              <div class="avatar">EM</div>
+              <div class="avatar">NL</div>
               <div>
-                <strong>Erika Musterfrau</strong>
-                <div class="role">Stellv. Vorsitzende</div>
-              </div>
-            </div>
-            <div class="person">
-              <div class="avatar">FM</div>
-              <div>
-                <strong>Felix Muster</strong>
+                <strong>Nils Landwehr</strong>
                 <div class="role">Kassenwart</div>
               </div>
             </div>
             <div class="person">
-              <div class="avatar">LM</div>
+              <div class="avatar">CB</div>
               <div>
-                <strong>Lena Muster</strong>
-                <div class="role">Schriftführung</div>
+                <strong>Christian Buschmann</strong>
+                <div class="role">Schriftführer</div>
               </div>
             </div>
           </div>
@@ -167,26 +159,10 @@
     <section id="projekte">
       <h2>Unsere Projekte</h2>
       <div class="grid cols-4">
-        <div class="tile">
-          <!-- PV Icon -->
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 13h18M5 13l2-8h10l2 8M10 17h4M8 21h8"/></svg>
-          <h3>Photovoltaik-Anlagen</h3>
-        </div>
-        <div class="tile tile--alt">
-          <!-- Wind Icon -->
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2v9M12 11l6.5-3.5M12 11L5.5 7.5M12 22v-7"/></svg>
-          <h3>Windkraft</h3>
-        </div>
-        <div class="tile">
-          <!-- Battery Icon -->
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="7" width="16" height="10" rx="2"/><path d="M21 10v4"/></svg>
-          <h3>Batteriespeicher</h3>
-        </div>
-        <div class="tile tile--alt">
-          <!-- Advice Icon -->
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2v4M4.93 4.93l2.83 2.83M2 12h4M19.07 4.93l-2.83 2.83M18 12h4M12 18v4M7 22h10"/></svg>
-          <h3>Energieberatung</h3>
-        </div>
+        <div class="tile"><h3>Photovoltaik-Anlagen</h3></div>
+        <div class="tile tile--alt"><h3>Windkraft</h3></div>
+        <div class="tile"><h3>Batteriespeicher</h3></div>
+        <div class="tile tile--alt"><h3>Energieberatung</h3></div>
       </div>
     </section>
 
@@ -212,7 +188,7 @@
             <li>Informationen & Beratung zu Fördermitteln und Technik</li>
             <li>Mehr Wertschöpfung in der Gemeinde</li>
           </ul>
-          <p><a class="btn cta--green" href="mailto:info@example.org?subject=Mitgliedsantrag">MITGLIEDSANTRAG</a></p>
+          <p><a class="btn cta--green" href="mailto:info@energie-verein-neuenkirchen.de?subject=Mitgliedsantrag">MITGLIEDSANTRAG</a></p>
         </div>
       </div>
     </section>
@@ -221,16 +197,16 @@
     <section id="kontakt" class="card" style="padding:22px">
       <h2>Kontakt</h2>
       <div class="grid cols-3 contact">
-        <div><strong>Max Mustermann</strong><br><span class="mono">0172 0000000</span></div>
-        <div><strong>Erika Musterfrau</strong><br><span class="mono">0174 0000000</span></div>
-        <div><strong>Lena Muster</strong><br><a href="mailto:info@energie-verein-neuenkirchen.de">info@energie-verein-neuenkirchen.de</a></div>
+        <div><strong>Steffen Kellermann</strong><br><span class="mono">0172 000000</span></div>
+        <div><strong>Nils Landwehr</strong><br><span class="mono">0174 000000</span></div>
+        <div><strong>Christian Buschmann</strong><br><a href="mailto:info@energie-verein-neuenkirchen.de">info@energie-verein-neuenkirchen.de</a></div>
       </div>
     </section>
 
   </main>
 
   <footer>
-    <div class="wrap">© <span id="year"></span> Energie-Verein Neuenkirchen</div>
+    <div class="wrap">© <span id="year"></span> Energie-Verein Neuenkirchen (n.e.V.)</div>
   </footer>
 
   <script>
