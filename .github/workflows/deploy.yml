@@ -4,6 +4,10 @@ on:
   push:
     branches: [ "main" ]
 
+concurrency:
+  group: deploy-site
+  cancel-in-progress: true
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -17,6 +21,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: 'npm'
 
       - name: Install & Build
         run: |
@@ -25,7 +30,6 @@ jobs:
             npm ci || npm install
             npm run build || echo "Kein Build-Script gefunden"
           fi
-
           # Sauberes dist/ befüllen, auch ohne Build-Script
           rm -rf dist
           mkdir -p dist
@@ -36,17 +40,13 @@ jobs:
             --exclude 'dist' \
             ./ dist/
 
-      # 🔎 Secret-Prüfung OHNE Key zu leaken
+      # 🔎 Secret-Prüfung (leakt keinen Key)
       - name: Validate SSH_PRIVATE_KEY is set
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         run: |
-          if [ -z "$SSH_PRIVATE_KEY" ]; then
-            echo "SSH_PRIVATE_KEY secret ist leer oder fehlt."
-            exit 1
-          else
-            echo "SSH_PRIVATE_KEY ist gesetzt."
-          fi
+          [ -n "$SSH_PRIVATE_KEY" ] || { echo "SSH_PRIVATE_KEY fehlt"; exit 1; }
+          echo "SSH_PRIVATE_KEY ist gesetzt."
 
       # 🔐 Key in ssh-agent laden
       - name: Load SSH key
@@ -60,7 +60,11 @@ jobs:
           mkdir -p ~/.ssh
           ssh-keyscan -H mail-energie-verein-neuenkirchen >> ~/.ssh/known_hosts
 
-      # 🚀 Deploy per rsync
+      # ✅ Kurztest der SSH-Verbindung
+      - name: Test SSH connection
+        run: ssh -o BatchMode=yes deploy@mail-energie-verein-neuenkirchen "echo '✅ SSH funktioniert'"
+
+      # 🚀 Deploy per rsync (Exit-23-sicher)
       - name: Rsync deploy
         run: |
           set -eo pipefail
