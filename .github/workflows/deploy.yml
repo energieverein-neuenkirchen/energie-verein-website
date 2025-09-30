@@ -54,15 +54,15 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      # (Optional) Host-Key vorab lernen – sicherer als StrictHostKeyChecking=no
+      # Host-Key vorab lernen (IP statt Hostname)
       - name: Add server host key
         run: |
           mkdir -p ~/.ssh
-          ssh-keyscan -H mail-energie-verein-neuenkirchen >> ~/.ssh/known_hosts
+          ssh-keyscan -H 94.130.79.103 >> ~/.ssh/known_hosts
 
       # ✅ Kurztest der SSH-Verbindung
       - name: Test SSH connection
-        run: ssh -o BatchMode=yes deploy@mail-energie-verein-neuenkirchen "echo '✅ SSH funktioniert'"
+        run: ssh -o BatchMode=yes deploy@94.130.79.103 "echo '✅ SSH funktioniert'"
 
       # 🚀 Deploy per rsync (Exit-23-sicher)
       - name: Rsync deploy
@@ -71,4 +71,4 @@ jobs:
           rsync -az --delete --mkpath \
             --no-perms --no-owner --no-group --omit-dir-times \
             -e "ssh -o ServerAliveInterval=30 -o ServerAliveCountMax=6" \
-            dist/ deploy@mail-energie-verein-neuenkirchen:/opt/site/public/
+            dist/ deploy@94.130.79.103:/opt/site/public/
