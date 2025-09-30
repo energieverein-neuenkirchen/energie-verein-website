@@ -13,21 +13,30 @@ jobs:
 
       # Optional – nur falls du ein Node-Frontend baust
       - name: Setup Node
+        if: hashFiles('package.json') != ''
         uses: actions/setup-node@v4
         with:
           node-version: 20
 
       - name: Install & Build
         run: |
+          set -eo pipefail
           if [ -f package.json ]; then
             npm ci || npm install
             npm run build || echo "Kein Build-Script gefunden"
-          else
-            mkdir -p dist
-            cp -r * dist/ || true
           fi
 
-      # 🔎 Secret-Prüfung OHNE Inline-Interpolation
+          # Sauberes dist/ befüllen, auch ohne Build-Script
+          rm -rf dist
+          mkdir -p dist
+          rsync -a \
+            --exclude '.git' \
+            --exclude '.github' \
+            --exclude 'node_modules' \
+            --exclude 'dist' \
+            ./ dist/
+
+      # 🔎 Secret-Prüfung OHNE Key zu leaken
       - name: Validate SSH_PRIVATE_KEY is set
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
@@ -36,19 +45,26 @@ jobs:
             echo "SSH_PRIVATE_KEY secret ist leer oder fehlt."
             exit 1
           else
-            echo "SSH_PRIVATE_KEY ist gesetzt (Länge in Bytes):"
-            printf "%s" "$SSH_PRIVATE_KEY" | wc -c
+            echo "SSH_PRIVATE_KEY ist gesetzt."
           fi
 
-      # 🔐 Key in ssh-agent laden (liest aus ENV)
+      # 🔐 Key in ssh-agent laden
       - name: Load SSH key
         uses: webfactory/ssh-agent@v0.9.0
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
+      # (Optional) Host-Key vorab lernen – sicherer als StrictHostKeyChecking=no
+      - name: Add server host key
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -H mail-energie-verein-neuenkirchen >> ~/.ssh/known_hosts
+
       # 🚀 Deploy per rsync
       - name: Rsync deploy
         run: |
-          rsync -avz --delete \
-            -e "ssh -o StrictHostKeyChecking=no" \
-            dist/ deploy@94.130.79.103:/opt/site/
+          set -eo pipefail
+          rsync -az --delete --mkpath \
+            --no-perms --no-owner --no-group --omit-dir-times \
+            -e "ssh -o ServerAliveInterval=30 -o ServerAliveCountMax=6" \
+            dist/ deploy@mail-energie-verein-neuenkirchen:/opt/site/public/
