@@ -72,3 +72,15 @@ jobs:
             --no-perms --no-owner --no-group --omit-dir-times \
             -e "ssh -o ServerAliveInterval=30 -o ServerAliveCountMax=6" \
             dist/ deploy@94.130.79.103:/opt/site/public/
+            # 🔍 Welche Public Keys hat der Agent wirklich?
+- name: Show loaded public keys (debug)
+  run: ssh-add -L || echo "⚠️ Kein Key im Agent"
+
+# 🔍 Public Key direkt aus dem Secret ableiten (falls der Agent leer ist)
+- name: Derive public key from secret (debug)
+  run: |
+    printf '%s\n' "${{ secrets.SSH_PRIVATE_KEY }}" | ssh-keygen -y -f - > pub_from_secret.pub
+    echo "----- BEGIN PUBLIC KEY (from secret) -----"
+    cat pub_from_secret.pub
+    echo "----- END PUBLIC KEY -----"
+
