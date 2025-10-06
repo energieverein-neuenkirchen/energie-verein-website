@@ -2,15 +2,13 @@ name: Deploy Website
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
     paths:
-      - "public/**"     # nur Deploy, wenn Dateien im public-Ordner geändert wurden
+      - "public/**"   # nur Deploy, wenn Dateien im public-Ordner geändert wurden
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
@@ -25,11 +23,16 @@ jobs:
           mkdir -p ~/.ssh
           ssh-keyscan -H 94.130.79.103 >> ~/.ssh/known_hosts
 
+      - name: Ensure target dir exists
+        run: |
+          ssh -o StrictHostKeyChecking=no deploy@94.130.79.103 "mkdir -p /opt/site/public"
+
       - name: Deploy files via rsync
         run: |
-          rsync -avz --delete --chown=deploy:deploy \
+          rsync -e "ssh -o StrictHostKeyChecking=no" -avz --delete --chown=deploy:deploy \
             public/ deploy@94.130.79.103:/opt/site/public/
 
       - name: Reload evn_web container
         run: |
-          ssh deploy@94.130.79.103 "docker compose -f /opt/compose/docker-compose.yml restart evn_web"
+          ssh -o StrictHostKeyChecking=no deploy@94.130.79.103 \
+            "docker exec evn_web nginx -t && docker exec evn_web nginx -s reload || docker restart evn_web"
