@@ -5,6 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Energie-Verein Neuenkirchen (n.e.V.)</title>
   <meta name="description" content="Gemeinsam die Energiewende lokal gestalten – fair, transparent und für alle.">
+  <!-- CSP erlaubt Umami -->
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self';
+                 img-src * data:;
+                 script-src 'self' https://stats.energie-verein-neuenkirchen.de 'unsafe-inline' 'unsafe-eval';
+                 style-src 'self' 'unsafe-inline';
+                 connect-src 'self' https://stats.energie-verein-neuenkirchen.de;">    
+  
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -144,7 +152,8 @@
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
-  <script async src="https://stats.energie-verein-neuenkirchen.de/script.js" data-website-id="66608562-e19a-437a-8ce8-de0c20ae7778"></script>
+  <script defer src="https://stats.energie-verein-neuenkirchen.de/script.js"
+        data-website-id="66608562-e19a-437a-8ce8-de0c20ae7778"></script>
   
 </body>
 </html>
